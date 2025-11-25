@@ -1,52 +1,218 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# react-native-network-security Example App
 
-# Getting Started
+This example app demonstrates the **react-native-network-security** library features including VPN detection, captive portal detection, public WiFi identification, and real-time network trust monitoring.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features Demonstrated
 
-## Step 1: Start Metro
+- ✅ Real-time VPN detection
+- ✅ Network connection status monitoring
+- ✅ WiFi SSID display
+- ✅ Public WiFi detection
+- ✅ Captive portal detection
+- ✅ Overall network trust status
+- ✅ Live updates on network changes
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Prerequisites
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Before running this example, ensure you have:
 
+- Node.js 20 or higher
+- React Native development environment set up ([Setup Guide](https://reactnative.dev/docs/set-up-your-environment))
+- For Android: Android Studio and Android SDK
+- For iOS: Xcode (macOS only)
+
+## Installation
+
+### Step 1: Install Dependencies
+
+From the **root directory** of the react-native-network-security project:
+
+**Using Yarn:**
 ```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+yarn install
 ```
 
-## Step 2: Build and run your app
+**Using npm:**
+```sh
+npm install
+```
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+This will install dependencies for both the library and the example app.
+
+## Running the Example
 
 ### Android
 
+**Using Yarn:**
 ```sh
-# Using npm
-npm run android
-
-# OR using Yarn
+cd example
 yarn android
 ```
 
+**Using npm:**
+```sh
+cd example
+npm run android
+```
+
+This will:
+1. Start the Metro bundler
+2. Build and install the app on your Android device/emulator
+3. Launch the app
+
+**Note:** Make sure you have an Android emulator running or a physical device connected via USB debugging.
+
 ### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
+**Using Yarn:**
 ```sh
-bundle install
+cd example
+cd ios
+pod install
+cd ..
+yarn ios
 ```
 
-Then, and every time you update your native dependencies, run:
-
+**Using npm:**
 ```sh
-bundle exec pod install
+cd example
+cd ios
+pod install
+cd ..
+npm run ios
 ```
+
+**Note:** iOS development requires macOS with Xcode installed.
+
+## Development
+
+### Start Metro Bundler Separately
+
+If you want to start Metro separately:
+
+**Using Yarn:**
+```sh
+cd example
+yarn start
+```
+
+**Using npm:**
+```sh
+cd example
+npm start
+```
+
+Then in another terminal, run:
+```sh
+yarn android
+# or
+yarn ios
+```
+
+### Reset Metro Cache
+
+If you encounter bundling issues:
+
+**Using Yarn:**
+```sh
+cd example
+yarn start --reset-cache
+```
+
+**Using npm:**
+```sh
+cd example
+npm start -- --reset-cache
+```
+
+## Testing Features
+
+### Test VPN Detection
+1. Enable a VPN on your device
+2. The app will show "VPN Active: YES" and mark the network as UNTRUSTED
+
+### Test Public WiFi Detection
+1. Connect to a WiFi network with "Guest", "Public", "Free", etc. in the name
+2. The app will show "Public WiFi: YES"
+
+### Test Captive Portal Detection
+1. Connect to a WiFi network that requires login (hotel, airport, cafe)
+2. The app will show "Captive Portal: YES"
+
+### Test Real-time Updates
+1. Toggle WiFi or mobile data on/off
+2. Connect/disconnect from VPN
+3. Switch between WiFi networks
+4. Watch the app update automatically
+
+## Building for Release
+
+### Android Release APK
+
+**Using Gradle:**
+```sh
+cd example/android
+./gradlew assembleRelease
+```
+
+**Using Windows:**
+```sh
+cd example\android
+.\gradlew assembleRelease
+```
+
+The APK will be at: `example/android/app/build/outputs/apk/release/app-release.apk`
+
+### iOS Release Build
+
+1. Open the workspace in Xcode:
+   ```sh
+   open example/ios/NetworkSecurityExample.xcworkspace
+   ```
+2. Select Product → Archive
+3. Follow the distribution prompts
+
+## Troubleshooting
+
+### "Unable to resolve module" Error
+```sh
+cd example
+yarn start --reset-cache
+```
+
+### Android Build Fails
+```sh
+cd example/android
+./gradlew clean
+cd ..
+yarn android
+```
+
+### iOS Build Fails
+```sh
+cd example/ios
+pod deintegrate
+pod install
+cd ..
+yarn ios
+```
+
+### Metro Already Running
+Stop the existing Metro process and restart:
+```sh
+# Kill Metro process
+# Then restart
+yarn start --reset-cache
+```
+
+## Learn More
+
+- [Library Documentation](../README.md)
+- [React Native Documentation](https://reactnative.dev/)
+
+## License
+
+MIT
 
 For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 

@@ -1,5 +1,5 @@
 const path = require('path');
-const { getDefaultConfig } = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const { withMetroConfig } = require('react-native-monorepo-config');
 
 const root = path.resolve(__dirname, '..');
@@ -10,7 +10,21 @@ const root = path.resolve(__dirname, '..');
  *
  * @type {import('metro-config').MetroConfig}
  */
-module.exports = withMetroConfig(getDefaultConfig(__dirname), {
+const config = withMetroConfig(getDefaultConfig(__dirname), {
   root,
   dirname: __dirname,
+});
+
+// Prevent loading React from parent node_modules to avoid duplicate React instances
+module.exports = mergeConfig(config, {
+  resolver: {
+    blockList: [
+      // Only block react and react-native core packages from parent, not @react-native/* scoped packages
+      new RegExp(`${path.resolve(root, 'node_modules/react/').replace(/[/\\]/g, '[/\\\\]')}.*`),
+      new RegExp(`${path.resolve(root, 'node_modules/react-native/').replace(/[/\\]/g, '[/\\\\]')}.*`),
+    ],
+  },
+  watchFolders: [
+    path.resolve(__dirname, '..'),
+  ],
 });

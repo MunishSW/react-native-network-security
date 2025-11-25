@@ -1,5 +1,6 @@
 #import <NetworkSecuritySpec/NetworkSecuritySpec.h>
+#import <React/RCTEventEmitter.h>
 
-@interface NetworkSecurity : NSObject <NativeNetworkSecuritySpec>
+@interface NetworkSecurity : RCTEventEmitter <NativeNetworkSecuritySpec>
 
 @end
