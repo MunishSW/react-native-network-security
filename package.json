@@ -1,0 +1,110 @@
+{
+  "name": "react-native-network-security",
+  "version": "0.1.0",
+  "description": "React Native security library that ensures the app communicates only through trusted, secure, and uncompromised network environments.",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "example": "yarn workspace react-native-network-security-example",
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "prepare": "bob build",
+    "typecheck": "tsc"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MunishSW/react-native-network-security.git"
+  },
+  "author": "Munish Vira <munishv@snapwork.com> (https://github.com/MunishSW/react-native-network-security)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MunishSW/react-native-network-security/issues"
+  },
+  "homepage": "https://github.com/MunishSW/react-native-network-security#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@react-native-community/cli": "20.0.1",
+    "@react-native-community/netinfo": "^11.4.1",
+    "@react-native/babel-preset": "0.81.1",
+    "@types/react": "^19.1.0",
+    "del-cli": "^6.0.0",
+    "react": "19.1.0",
+    "react-native": "0.81.1",
+    "react-native-builder-bob": "^0.40.13",
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "@react-native-community/netinfo": "^11.0.0",
+    "react": "*",
+    "react-native": "*"
+  },
+  "workspaces": [
+    "example"
+  ],
+  "packageManager": "yarn@4.11.0",
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "codegenConfig": {
+    "name": "NetworkSecuritySpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.networksecurity"
+    }
+  },
+  "create-react-native-library": {
+    "languages": "kotlin-objc",
+    "type": "turbo-module",
+    "tools": [],
+    "version": "0.55.1"
+  }
+}
