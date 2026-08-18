@@ -124,11 +124,6 @@ RCT_EXPORT_MODULE()
     return std::make_shared<facebook::react::NativeNetworkSecuritySpecJSI>(params);
 }
 
-+ (NSString *)moduleName
-{
-  return @"NetworkSecurity";
-}
-
 - (void)dealloc
 {
   if (_vpnCheckTimer) {
